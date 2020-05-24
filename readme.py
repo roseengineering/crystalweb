@@ -41,7 +41,7 @@ have been using a span of 100KHz.
 
 Next calibrate the thru port of the Nanovna using the "calib" menu.
 Now you can run the script to make the measurement.  Pass the --stray option 
-if you want to measure the holder capacitance too.  The options --start and --stop
+if you want to measure the holder capacitance.  The options --start and --stop
 set the initial sweep frequency range.
 
 The arguments to the python script follow:
