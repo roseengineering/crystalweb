@@ -13,7 +13,7 @@ of the crystal, if the stray option is given, to find the crystal's holder
 capacitance.
 
 The script operates by drilling the Nanovna down to the series resonance point 
-of the crystal and measures its Cm, Lm, and Rm values using the phase shift 
+of the crystal and measuring its Cm, Lm, and Rm values using the phase shift 
 measurement method.  When the measurement is finished the Nanovna's 
 sweep frequency range will be restored to what it was before the script was run.
 
