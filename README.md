@@ -1,24 +1,30 @@
                                                                       
-# Measure Crystal Characteristic automatically using a NanoVNA
+# Measure Crystal Characteristics Automatically Using a NanoVNA
 
 ![](animation.gif)
+
+## Introduction
 
 Use this program to automatically characterize your crystals
 using a text fixture and a Nanovna.  The script will search for 
 the series frequency resonant point. (As well as the parallel resonant point 
 if the stray option which is used to find the holder capacitance
-of the crystal.)  
-Namely the script will drill down to the series resonance point and 
-measure the crystal's Cm, Lm, and Rm using the phase shift measurement 
-method.
+of the crystal)  
 
-To use first set the "stimulus"
-stop and start values of the Nanovna to encompass the range
-of frequency your expect from your batch of crystals.  The 
+Specifically the script drills the Nanovna down to the series resonance point 
+of the crystal and measures its Cm, Lm, and Rm values using the phase shift 
+measurement method.
+
+# How to use
+
+First set the start and stop "stimulus" 
+start values of the Nanovna to encompass the range
+of frequencies you expect to see from your batch of crystals.  The 
 frequency span should be large enough to capture
-both the series and parallal resonant points of your crystals.
+both the series and parallal resonant points of your crystals.  I
+have been using a span of 100KHz.
 
-Next calibrate your Nanovna thru port using the Nanovna's "calib" menu.
+Next calibrate the thru port of the Nanovna using the "calib" menu.
 
 The arguments to the python script follow:
 
@@ -50,6 +56,8 @@ optional arguments:
 
 Besides measuring crystals, the script can also measure the
 stray capacitance of a test fixture using the "--fixture" option.
+
+## Example
 
 As the script measures a crystal it writes to stderr the result.  At the
 conclusion of the measurement it then writes to stdout a comma separated 
