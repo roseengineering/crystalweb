@@ -53,12 +53,12 @@ stray capacitance of a test fixture using the "--fixture" option.
 
 ## Example
 
-As the script measures a crystal it writes to stderr the result.  At the
-conclusion of the measurement it then writes to stdout a comma separated 
-formatted line of all the values found.  The csv header for this
+As the script measures the crystal, it will write the result to stderr.  At the
+conclusion of the measurement it will write to stdout a comma separated 
+formatted line of all the measurements found.  The csv header for this
 line is 'XTAL,FS,CM,LM,RM,QU,CO'.
 
-For example here I used the script to measure a 7.03 Mhz crystal:
+For example, I executed the following to measure a 7.03 Mhz crystal:
 
 ```
 $ crystalweb.py --stray 1.1 --title X1
