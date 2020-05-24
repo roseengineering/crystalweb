@@ -53,9 +53,9 @@ stray capacitance of a test fixture using the "--fixture" option.
 
 ## Example
 
-As the script measures the crystal, it will write the result to stderr.  At the
+As the script measures the crystal, it will write the results to stderr.  At the
 conclusion of the measurement it will write to stdout a comma separated 
-formatted line of all the measurements found.  The csv header for this
+formatted line listing all the measurements previously found.  The CSV header for this
 line is 'XTAL,FS,CM,LM,RM,QU,CO'.
 
 For example, I executed the following to measure a 7.03 Mhz crystal:
