@@ -29,7 +29,7 @@ Specifically the script drills the Nanovna down to the series resonance point
 of the crystal and measures its Cm, Lm, and Rm values using the phase shift 
 measurement method.
 
-# How to use
+## How to use
 
 First set the start and stop "stimulus" 
 start values of the Nanovna to encompass the range
