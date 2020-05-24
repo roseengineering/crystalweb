@@ -28,7 +28,8 @@ capacitance.
 
 The script operates by drilling the Nanovna down to the series resonance point 
 of the crystal and measures its Cm, Lm, and Rm values using the phase shift 
-measurement method.
+measurement method.  When the measurement is finished the Nanovna's 
+sweep frequency range will be restored to what it was before the script was run.
 
 ## How to use
 
@@ -40,6 +41,10 @@ both the series and parallal resonant points of your crystals.  I
 have been using a span of 100KHz.
 
 Next calibrate the thru port of the Nanovna using the "calib" menu.
+
+Next run the script passing the --stray option if you want the holder
+capacitance to be measured as well.  The options --start and --stop
+set the initial sweep frequency range.
 
 The arguments to the python script follow:
 
