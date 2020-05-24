@@ -27,9 +27,8 @@ both the series and parallal resonant points of your crystals.  I
 have been using a span of 100KHz.
 
 Next calibrate the thru port of the Nanovna using the "calib" menu.
-
-Next run the script passing the --stray option if you want the holder
-capacitance to be measured as well.  The options --start and --stop
+Now you can run the script to make the measurement.  Pass the --stray option 
+if you want to measure the holder capacitance too.  The options --start and --stop
 set the initial sweep frequency range.
 
 The arguments to the python script follow:
