@@ -6,16 +6,18 @@
 ## Introduction
 
 Use this program to automatically characterize your crystals
-using a text fixture and a Nanovna.  The script will search for 
-the series frequency resonant point. (As well as the parallel resonant point 
-if the stray option which is used to find the holder capacitance
-of the crystal)  
+using a test fixture and a Nanovna.  The script will search for 
+the series frequency resonant point of the crystal and from there
+make measurements.  It will also search for the parallel resonant point 
+of the crystal, if the stray option is given, to find the crystal's holder 
+capacitance.
 
-Specifically the script drills the Nanovna down to the series resonance point 
+The script operates by drilling the Nanovna down to the series resonance point 
 of the crystal and measures its Cm, Lm, and Rm values using the phase shift 
-measurement method.
+measurement method.  When the measurement is finished the Nanovna's 
+sweep frequency range will be restored to what it was before the script was run.
 
-# How to use
+## How to use
 
 First set the start and stop "stimulus" 
 start values of the Nanovna to encompass the range
@@ -25,6 +27,10 @@ both the series and parallal resonant points of your crystals.  I
 have been using a span of 100KHz.
 
 Next calibrate the thru port of the Nanovna using the "calib" menu.
+
+Next run the script passing the --stray option if you want the holder
+capacitance to be measured as well.  The options --start and --stop
+set the initial sweep frequency range.
 
 The arguments to the python script follow:
 
