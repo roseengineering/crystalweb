@@ -7,7 +7,7 @@
 
 Use this script to automatically characterize your crystals
 using a test fixture and a Nanovna.  The script will search for 
-the series frequency resonant point of the crystal and from there
+the series resonant point of the crystal and from there
 make measurements.  It will also search for the parallel resonant point 
 of the crystal, if the stray option is given, to find the crystal's holder 
 capacitance.
