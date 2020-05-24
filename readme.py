@@ -33,8 +33,7 @@ sweep frequency range will be restored to what it was before the script was run.
 
 ## How to use
 
-First set the start and stop "stimulus" 
-start values of the Nanovna to encompass the range
+First set the start and stop "stimulus" values of the Nanovna to encompass the range
 of frequencies you expect to see from your batch of crystals.  The 
 frequency span should be large enough to capture
 both the series and parallal resonant points of your crystals.  I
