@@ -204,7 +204,9 @@ def analyze_crystal(N, rl, theta, stray, title):
             df = alpha * df
             sweep(fp - df / 2, fp + df / 2)
             marker_command(1, 50)
-            fp, _ = measure(N=NFP if df > 100 else N)[1]
+            zeros, _, _ = measure(N=NFP if df > 100 else N)[0]
+            if len(zeros) > 2: break
+            fp = zeros[0]
         print("fp    = {:.0f} Hz".format(fp), file=sys.stderr)
         co = holder_parallel(fs=fs, fp=fp, cm=cm, stray=stray)
         print('Co    = {:.5f} pF'.format(co / 1e-12), file=sys.stderr)
