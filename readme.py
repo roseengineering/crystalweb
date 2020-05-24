@@ -20,12 +20,13 @@ print(f"""
 ## Introduction
 
 Use this program to automatically characterize your crystals
-using a text fixture and a Nanovna.  The script will search for 
-the series frequency resonant point. (As well as the parallel resonant point 
-if the stray option which is used to find the holder capacitance
-of the crystal)  
+using a test fixture and a Nanovna.  The script will search for 
+the series frequency resonant point of the crystal and from there
+make measurements.  It will also search for the parallel resonant point 
+of the crystal, if the stray option is given, to find the crystal's holder 
+capacitance.
 
-Specifically the script drills the Nanovna down to the series resonance point 
+The script operates by drilling the Nanovna down to the series resonance point 
 of the crystal and measures its Cm, Lm, and Rm values using the phase shift 
 measurement method.
 
