@@ -22,7 +22,7 @@ sweep frequency range will be restored to what it was before the script was run.
 First set the start and stop "stimulus" values of the Nanovna to encompass the range
 of frequencies you expect to see from your batch of crystals.  The 
 frequency span should be large enough to capture
-both the series and parallal resonant points of your crystals.  I
+both the series and parallel resonant points of your crystals.  I
 have been using a span of 100KHz.
 
 Next calibrate the thru port of the Nanovna using the "calib" menu.
