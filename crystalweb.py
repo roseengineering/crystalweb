@@ -90,9 +90,9 @@ def motational_resistance(loss, rl):
     RM = 2 * rl * (10**(loss/20) - 1)
     return RM
 
-def phase_shift_method(fs, bw, rm, rl, theta):
+def phase_shift_method(fs, bw, rm, rl):
     REFF = rm + 2 * rl
-    CM = bw / (2 * np.pi * REFF * fs**2 * np.tan(theta * np.pi / 180))
+    CM = bw / (2 * np.pi * REFF * fs**2)
     LM = 1 / (2 * np.pi * fs)**2 / CM
     QU = 2 * np.pi * fs * LM / rm
     return CM, LM, QU
@@ -133,8 +133,7 @@ def measure(N, theta=45, tol=2):
     bw = np.nan
     if phi[0] > theta + tol and phi[-1] < -(theta + tol):
         span = np.interp([theta, -theta], phi[::-1], freq[::-1])
-        bw = span[1] - span[0]
-
+        bw = (span[1] - span[0]) / np.tan(theta * np.pi / 180)
     if "capture_num" in globals(): capture()
     return (zeros, gain, bw), (fmin, fmax), (freq, mag)
 
@@ -187,7 +186,7 @@ def analyze_crystal(N, rl, theta, stray, title):
     
     sweep(fs - bw_df / 2, fs + bw_df / 2)
     _, _, bw = measure(N=N, theta=theta)[0]
-    cm, lm, qu = phase_shift_method(fs=fs, bw=bw, rm=rm, rl=rl, theta=theta)
+    cm, lm, qu = phase_shift_method(fs=fs, bw=bw, rm=rm, rl=rl)
     print("Cm    = {:.4f} pF".format(cm / 1e-12), file=sys.stderr)
     print("Lm    = {:.4f} mH".format(lm / 1e-3), file=sys.stderr)
     print("Qu    = {:.0f}".format(qu), file=sys.stderr)
