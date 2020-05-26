@@ -201,7 +201,7 @@ def analyze_crystal(N, rl, theta, stray, title):
             df = alpha * df
             sweep(fp - df / 2, fp + df / 2)
             marker_command(1, 50)
-            zeros, _, _ = measure(N=1 if df > 100 else N)[0]
+            zeros, _, _ = measure(N=1)[0]
             if len(zeros) > 2: break
             fp = zeros[0]
         print("fp    = {:.0f} Hz".format(fp), file=sys.stderr)
