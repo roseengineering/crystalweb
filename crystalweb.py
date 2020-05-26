@@ -109,7 +109,7 @@ def stray_fixture(freq, loss, rl):
 
 #### MAIN CODE
 
-def measure(N, theta=45, tol=2):
+def measure(N, theta=45):
     time.sleep(1)
     freq = frequencies()
     i = 0
@@ -131,7 +131,7 @@ def measure(N, theta=45, tol=2):
     fmax =  freq[np.argmax(mag)]
 
     bw = np.nan
-    if phi[0] > theta + tol and phi[-1] < -(theta + tol):
+    if phi[0] > theta and phi[-1] < -theta:
         span = np.interp([theta, -theta], phi[::-1], freq[::-1])
         bw = (span[1] - span[0]) / np.tan(theta * np.pi / 180)
     if "capture_num" in globals(): capture()
@@ -153,9 +153,7 @@ def analyze_stray(N, rl):
     print('minimum = {:.2f} pF'.format(np.min(stray) / 1e-12), file=sys.stderr)
 
 def analyze_crystal(N, rl, theta, stray, title):
-    NFSFP = 1
-    NFS = 1
-    NFP = 1
+    tol = 2
     alpha = .7
 
     # get initial measurement
@@ -164,7 +162,7 @@ def analyze_crystal(N, rl, theta, stray, title):
     marker_command(1, 0)
     if title: print("TITLE: {}".format(title), file=sys.stderr)
     print("RL    = {:.1f} ohm".format(rl), file=sys.stderr)
-    fp, fs = measure(N=NFSFP)[1]
+    fp, fs = measure(N=1)[1]
 
     # measure fs
 
@@ -174,7 +172,7 @@ def analyze_crystal(N, rl, theta, stray, title):
         df = alpha * df
         sweep(fs - df/2, fs + df/2)
         marker_command(1, 50)
-        zeros, gain, bw = measure(N=NFS if df > 100 else N, theta=theta)[0]
+        zeros, gain, bw = measure(N=1 if df > 100 else N, theta=theta + tol)[0]
         if not np.isnan(bw): bw_df = df 
         fs = zeros[0]
         loss = -gain[0]
@@ -203,7 +201,7 @@ def analyze_crystal(N, rl, theta, stray, title):
             df = alpha * df
             sweep(fp - df / 2, fp + df / 2)
             marker_command(1, 50)
-            zeros, _, _ = measure(N=NFP if df > 100 else N)[0]
+            zeros, _, _ = measure(N=1 if df > 100 else N)[0]
             if len(zeros) > 2: break
             fp = zeros[0]
         print("fp    = {:.0f} Hz".format(fp), file=sys.stderr)
@@ -265,7 +263,6 @@ def main():
         err = 1
     close_port()
     sys.exit(err)
-
 
 if __name__ == "__main__":
     main()
