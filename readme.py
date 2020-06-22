@@ -49,7 +49,12 @@ The arguments to the python script follow:
 { run("crystalweb.py --help") }
 
 Besides measuring crystals, the script can also measure the
-stray capacitance of a test fixture using the "--fixture" option.
+stray capacitance of a test fixture using the "--fixture" measurement option.
+The stray capacitance is used to measure the holder capacitance of the
+crystal.  To find the stray capacitance, first calibrate the thru of the NanoVNA.
+Next leave the fixture open 
+and run "crystalweb.py --fixture".  The "--loss" measurement is like the "--fixture"
+measurement except it returns the loss through the jig instead of the capacitance.
 
 ## Example
 
