@@ -54,13 +54,13 @@ The stray capacitance is used to measure the holder capacitance of the
 crystal.  To find the stray capacitance, first calibrate the thru of the NanoVNA.
 Next leave the fixture open 
 and run "crystalweb.py --fixture".  The "--loss" measurement is like the "--fixture"
-measurement except it returns the loss through the jig instead of the capacitance.
+measurement except it returns the loss through the fixture instead of the capacitance.
 
 ## Example
 
 The script, as it measures the crystal, writes the results to stderr.  At the
-conclusion of the measurement it writes a a final comma separated 
-formatted line listing all the measurements previously found to stdout.
+conclusion of the measurement, the script writes a final comma separated 
+formatted line, listing all the measurements previously found, to stdout.
 The CSV header for this line is 'XTAL,FS,CM,LM,RM,QU,CO'.
 
 For example, I executed the following to measure a 7.03 Mhz crystal:
