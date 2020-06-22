@@ -1,7 +1,7 @@
 import os, subprocess
 
 def run(command):
-    proc = subprocess.Popen("PYTHONPATH=. python " + command, shell=True, 
+    proc = subprocess.Popen("PYTHONPATH=. python3 " + command, shell=True, 
            stdout=subprocess.PIPE)
     buf = proc.stdout.read().decode()
     proc.wait()
@@ -53,10 +53,10 @@ stray capacitance of a test fixture using the "--fixture" option.
 
 ## Example
 
-As the script measures the crystal, it will write the results to stderr.  At the
-conclusion of the measurement it will write to stdout a comma separated 
-formatted line listing all the measurements previously found.  The CSV header for this
-line is 'XTAL,FS,CM,LM,RM,QU,CO'.
+The script, as it measures the crystal, writes the results to stderr.  At the
+conclusion of the measurement it writes a a final comma separated 
+formatted line listing all the measurements previously found to stdout.
+The CSV header for this line is 'XTAL,FS,CM,LM,RM,QU,CO'.
 
 For example, I executed the following to measure a 7.03 Mhz crystal:
 
