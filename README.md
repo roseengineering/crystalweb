@@ -60,6 +60,8 @@ optional arguments:
 
 Besides measuring crystals, the script can also measure the
 stray capacitance of a test fixture using the "--fixture" option.
+First calibrate the thru of the NanoVNA.  Next leave the fixture open 
+and run "crystalweb.py --fixture".
 
 ## Example
 
