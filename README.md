@@ -23,12 +23,11 @@ First set the start and stop "stimulus" values of the Nanovna to encompass the r
 of frequencies you expect to see from your batch of crystals.  The 
 frequency span should be large enough to capture
 both the series and parallel resonant points of your crystals.  I
-have been using a span of 100KHz.
+have been using a span of 100KHz.  (Or use options --start and --stop to force this initial sweep frequency range.)
 
 Next calibrate the thru port of the Nanovna using the "calib" menu.
 Now you can run the script to make the measurement.  Pass the --stray option 
-if you want to measure the holder capacitance.  The options --start and --stop
-set the initial sweep frequency range.
+if you want to measure the holder capacitance.  
 
 The arguments to the python script follow:
 
