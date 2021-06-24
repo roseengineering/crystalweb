@@ -61,13 +61,13 @@ measurement except it returns the loss through the fixture instead of the capaci
 The script, as it measures the crystal, writes the results to stderr.  At the
 conclusion of the measurement, the script writes a final comma separated 
 formatted line, listing all the measurements previously found, to stdout.
-The CSV header for this line is 'XTAL,FS,CM,LM,RM,QU,CO'.
+The CSV header for this line is 'PART,FS,CM,LM,RM,QU,CO'.
 
 For example, I executed the following to measure a 7.03 Mhz crystal:
 
 ```
 $ crystalweb.py --stray 1.1
-TITLE: X1
+PART: X1
 RL    = 50.0 ohm
 fs    = 7027674 Hz
 Rm    = 18.39 ohm
