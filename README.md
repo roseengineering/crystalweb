@@ -83,7 +83,7 @@ The CSV header for this line is 'XTAL,FS,CM,LM,RM,QU,CO'.
 For example, I executed the following to measure a 7.03 Mhz crystal:
 
 ```
-$ crystalweb.py --stray 1.1 --title X1
+$ crystalweb.py --stray 1.1
 TITLE: X1
 RL    = 50.0 ohm
 fs    = 7027674 Hz
