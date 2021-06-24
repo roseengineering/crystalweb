@@ -198,7 +198,6 @@ def analyze_crystal(N, rl, theta, stray, partname, partnum):
         co = 0
     else:
         stray = stray * 1e-12
-        print('stray = {:.2f} pF'.format(stray / 1e-12), file=sys.stderr)
         df = fp - fs
         while df > 100:
             df = alpha * df

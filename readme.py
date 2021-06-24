@@ -43,8 +43,9 @@ have been using a span of 100KHz.
 Next calibrate the thru port of the Nanovna using the "calib" menu.
 Now you can run the script to make the measurement.  Pass the --stray option 
 if you want to measure the holder capacitance.  To
-tell crystalweb specifically what the start and stop frequency of the above span is,
-pass the options --start and --stop to the program.
+tell crystalweb explicitly what the start and stop frequency of span you
+want, pass the options --start and --stop to the program, otherwise it
+will query the range from the nanovna.
 
 The arguments to the python script are as follows:
 
@@ -55,7 +56,7 @@ The arguments to the python script are as follows:
 Besides measuring crystals, the script can also measure the
 stray capacitance of the test fixture using the "--fixture" measurement option.
 When later measuring the crystal in the fixture, this stray capacitance is passed to crystalweb 
-which is uses to find the crystal's holder capacitance.
+which it uses to find the crystal's holder capacitance.
 
 Here are the steps to find the stray capacitance of your fixture. 
 First calibrate the thru of the NanoVNA.  Next leave the fixture open 
@@ -83,7 +84,6 @@ Rm    = 18.39 ohm
 Cm    = 0.0149 pF
 Lm    = 34.3163 mH
 Qu    = 82401
-stray = 1.10 pF
 fp    = 7039743 Hz
 Co    = 3.25138 pF
 X1,7027674,1.4946e-14,0.034316,18.39,82401,3.2514e-12
