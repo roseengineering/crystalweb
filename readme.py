@@ -94,7 +94,7 @@ Below are the results from crystalweb, put in
 graph form using Pandas, after measuring
 100 crystals from a 11.0570 Mhz batch.
 
-![](samples.png)
+![](batch.png)
 """)
 
 
