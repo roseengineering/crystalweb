@@ -9,8 +9,9 @@ Use this script to automatically characterize your crystals
 using a test fixture and a Nanovna.  The script will search for 
 the series resonant point of the crystal and from there
 make measurements.  It will also search for the parallel resonant point 
-of the crystal, if the --stray option is given, to find the crystal's holder 
-capacitance.
+of the crystal, if the --stray option is given.
+The parallel resonant frequency is used to find the crystal's "holder"
+capacitance CO.
 
 The script operates by drilling the Nanovna down to the series resonance point 
 of the crystal and measuring its Cm, Lm, and Rm values using the phase shift 
@@ -27,10 +28,11 @@ have been using a span of 100KHz.
 
 Next calibrate the thru port of the Nanovna using the "calib" menu.
 Now you can run the script to make the measurement.  Pass the --stray option 
-if you want to measure the holder capacitance.  The options --start and --stop
-set the initial sweep frequency range.
+if you want to measure the holder capacitance.  To
+tell crystalweb specifically what the start and stop frequency of the above span is,
+pass the options --start and --stop to the program.
 
-The arguments to the python script follow:
+The arguments to the python script are as follows:
 
                                                                  
 ```
@@ -65,18 +67,25 @@ optional arguments:
 ```
 
 
+## Measuring the Fixture Capacitance
+
 Besides measuring crystals, the script can also measure the
-stray capacitance of a test fixture using the "--fixture" measurement option.
-The stray capacitance is used to measure the holder capacitance of the
-crystal.  To find the stray capacitance, first calibrate the thru of the NanoVNA.
-Next leave the fixture open 
-and run "crystalweb.py --fixture".  The "--loss" measurement is like the "--fixture"
-measurement except it returns the loss through the fixture instead of the capacitance.
+stray capacitance of the test fixture using the "--fixture" measurement option.
+When later measuring the crystal in the fixture, this stray capacitance is passed to crystalweb 
+which is uses to find the crystal's holder capacitance.
+
+Here are the steps to find the stray capacitance of your fixture. 
+First calibrate the thru of the NanoVNA.  Next leave the fixture open 
+and run "crystalweb.py --fixture".  The program will measure and output
+the fixture's stray capacitance.
+
+To find the dB loss through the fixture instead of the stray capacitance use the "--loss" option. 
 
 ## Example
 
-The script, as it measures the crystal, writes the results to stderr.  At the
-conclusion of the measurement, the script writes a final comma separated 
+The script, when it measures the crystal, writes the results it finds
+immediately to stderr.  At the conclusion of the measurement, the script 
+will then write a final comma separated 
 formatted line, listing all the measurements previously found, to stdout.
 The CSV header for this line is 'PART,FS,CM,LM,RM,QU,CO'.
 
@@ -112,4 +121,10 @@ graph form using Pandas, after measuring
 100 crystals from a 11.0570 Mhz batch.
 
 ![](batch.png)
+
+The top ten crystals, the ones with the highest unloaded Q,
+have the following characteristics:
+
+![](topten.png)
+
 
