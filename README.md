@@ -101,4 +101,15 @@ X1,7027674,1.4946e-14,0.034316,18.39,82401,3.2514e-12
 
 ![](fixture.jpg)
 
+### Quantifying A Batch of 100 Crystals.
+
+You can use the --batch option to quickly
+measure a batch of crystals.  It will repeatedly run
+the measurement after prompting you to change the crystal.
+
+Below are the results from crystalweb, put in
+graph form using Pandas, after measuring
+100 crystals from a 11.0570 Mhz batch.
+
+![](samples.png)
 
