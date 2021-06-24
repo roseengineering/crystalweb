@@ -44,7 +44,6 @@ def fetch_data():
         if c == chr(13):
             pass 
         elif c == chr(10):
-            # print(line, file=sys.stderr)
             result.append(line.split(' '))
             line = ''
         else:
