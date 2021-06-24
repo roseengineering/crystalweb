@@ -44,6 +44,7 @@ def fetch_data():
         if c == chr(13):
             pass 
         elif c == chr(10):
+            # print(line, file=sys.stderr)
             result.append(line.split(' '))
             line = ''
         else:
@@ -152,7 +153,7 @@ def analyze_stray(N, rl):
     print('median  = {:.2f} pF'.format(np.median(stray) / 1e-12), file=sys.stderr)
     print('minimum = {:.2f} pF'.format(np.min(stray) / 1e-12), file=sys.stderr)
 
-def analyze_crystal(N, rl, theta, stray, title):
+def analyze_crystal(N, rl, theta, stray, partname, partnum):
     tol = 2
     alpha = .7
 
@@ -160,7 +161,7 @@ def analyze_crystal(N, rl, theta, stray, title):
 
     marker_command(1, "on")
     marker_command(1, 0)
-    if title: print("TITLE: {}".format(title), file=sys.stderr)
+    print("PART: {}{}".format(partname, partnum), file=sys.stderr)
     print("RL    = {:.1f} ohm".format(rl), file=sys.stderr)
     fp, fs = measure(N=1)[1]
 
@@ -176,6 +177,9 @@ def analyze_crystal(N, rl, theta, stray, title):
         if not np.isnan(bw): bw_df = df 
         fs = zeros[0]
         loss = -gain[0]
+    if bw_df is None:
+        print('Could not find series resonant frequency', file=sys.stderr)
+        return 
     print("fs    = {:.0f} Hz".format(fs), file=sys.stderr)
     rm = motational_resistance(loss, rl)
     print("Rm    = {:.2f} ohm".format(rm), file=sys.stderr)
@@ -208,8 +212,8 @@ def analyze_crystal(N, rl, theta, stray, title):
         co = holder_parallel(fs=fs, fp=fp, cm=cm, stray=stray)
         print('Co    = {:.5f} pF'.format(co / 1e-12), file=sys.stderr)
 
-    print("{title},{fs:.0f},{cm:.5g},{lm:.5g},{rm:.2f},{qu:.0f},{co:.5g}".format(
-          title=title, fs=fs, cm=cm, lm=lm, rm=rm, co=co, qu=qu))
+    print("{partname}{partnum},{fs:.0f},{cm:.5g},{lm:.5g},{rm:.2f},{qu:.0f},{co:.5g}".format(
+          partname=partname, partnum=partnum, fs=fs, cm=cm, lm=lm, rm=rm, co=co, qu=qu))
     sys.stdout.flush()
 
 def main():
@@ -220,6 +224,8 @@ def main():
         help="measure test fixture stray capacitance")
     parser.add_argument("--loss", action="store_true",
         help="measure test fixture loss")
+    parser.add_argument("--batch", action="store_true",
+        help="perform a batch measurement of crystals")
     parser.add_argument("--theta", type=float, default=45,
         help="phase angle for measuring bandwidth")
     parser.add_argument("--stray", type=float,
@@ -228,8 +234,10 @@ def main():
         help="number of times to repeat measurements")
     parser.add_argument("--load", type=int, default=50,
         help="test fixture source and load resistance")
-    parser.add_argument("--title", type=str, default='',
-        help="title of measurement")
+    parser.add_argument("--part-name", type=str, default='X',
+        help="name of part")
+    parser.add_argument("--part-number", type=int, default=1,
+        help="number of part")
     parser.add_argument("--device", 
         help="name of serial port device")
     parser.add_argument("--start", type=float, 
@@ -244,26 +252,34 @@ def main():
     N = args.repeat
     rl = args.load
     theta = args.theta
+    partname = args.part_name
+    partnum = args.part_number
+    stray = args.stray
     open_port(args.device or getport(), start=args.start, stop=args.stop)
-    err = 0
-    try:
-        if args.fixture:
-            analyze_stray(N=N, rl=rl)
-        elif args.loss:
-            analyze_loss(N=N, rl=rl)
-        else:
-            analyze_crystal(N=N, rl=rl, theta=theta, 
-                stray=args.stray, title=args.title)
-    except KeyboardInterrupt:
-        print("Bye", file=sys.stderr)
-        err = 1
-    except Exception:
-        import traceback
-        traceback.print_exc()
-        err = 1
+    if args.batch:
+        print('PART,FS,CM,LM,RM,QU,CO')
+    while True:
+        try:
+            if args.fixture:
+                analyze_stray(N=N, rl=rl)
+            elif args.loss:
+                analyze_loss(N=N, rl=rl)
+            else:
+                analyze_crystal(N=N, rl=rl, theta=theta, 
+                    stray=stray, partname=partname, partnum=partnum)
+        except KeyboardInterrupt:
+            print("Bye", file=sys.stderr)
+        except Exception:
+            import traceback
+            traceback.print_exc()
+        if not args.batch:
+            break
+        print("Press return to measure another part.", file=sys.stderr)
+        sys.stdin.readline() 
+        partnum += 1
     close_port()
-    sys.exit(err)
 
 if __name__ == "__main__":
     main()
+
 

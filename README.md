@@ -23,37 +23,45 @@ First set the start and stop "stimulus" values of the Nanovna to encompass the r
 of frequencies you expect to see from your batch of crystals.  The 
 frequency span should be large enough to capture
 both the series and parallel resonant points of your crystals.  I
-have been using a span of 100KHz.  (Or use options --start and --stop to force this initial sweep frequency range.)
+have been using a span of 100KHz.
 
 Next calibrate the thru port of the Nanovna using the "calib" menu.
 Now you can run the script to make the measurement.  Pass the --stray option 
-if you want to measure the holder capacitance.  
+if you want to measure the holder capacitance.  The options --start and --stop
+set the initial sweep frequency range.
 
 The arguments to the python script follow:
 
                                                                  
 ```
 $ crystalweb.py --help
-usage: crystalweb.py [-h] [--fixture] [--loss] [--theta THETA] [--stray STRAY]
-                     [--repeat REPEAT] [--load LOAD] [--title TITLE]
+usage: crystalweb.py [-h] [--fixture] [--loss] [--batch] [--theta THETA]
+                     [--stray STRAY] [--repeat REPEAT] [--load LOAD]
+                     [--part-name PART_NAME] [--part-number PART_NUMBER]
                      [--device DEVICE] [--start START] [--stop STOP]
                      [--capture]
 
 optional arguments:
-  -h, --help       show this help message and exit
-  --fixture        measure test fixture stray capacitance (default: False)
-  --loss           measure test fixture loss (default: False)
-  --theta THETA    phase angle for measuring bandwidth (default: 45)
-  --stray STRAY    test fixture stray capacitance in pF, affects Co (default:
-                   None)
-  --repeat REPEAT  number of times to repeat measurements (default: 10)
-  --load LOAD      test fixture source and load resistance (default: 50)
-  --title TITLE    title of measurement (default: )
-  --device DEVICE  name of serial port device (default: None)
-  --start START    starting frequency of initial sweep (default: None)
-  --stop STOP      stopping frequency of initial sweep (default: None)
-  --capture        capture screenshots of the measurements as movie_xx.png
-                   (default: False)
+  -h, --help            show this help message and exit
+  --fixture             measure test fixture stray capacitance (default:
+                        False)
+  --loss                measure test fixture loss (default: False)
+  --batch               perform a batch measurement of crystals (default:
+                        False)
+  --theta THETA         phase angle for measuring bandwidth (default: 45)
+  --stray STRAY         test fixture stray capacitance in pF, affects Co
+                        (default: None)
+  --repeat REPEAT       number of times to repeat measurements (default: 10)
+  --load LOAD           test fixture source and load resistance (default: 50)
+  --part-name PART_NAME
+                        name of part (default: X)
+  --part-number PART_NUMBER
+                        number of part (default: 1)
+  --device DEVICE       name of serial port device (default: None)
+  --start START         starting frequency of initial sweep (default: None)
+  --stop STOP           stopping frequency of initial sweep (default: None)
+  --capture             capture screenshots of the measurements as
+                        movie_xx.png (default: False)
 ```
 
 
