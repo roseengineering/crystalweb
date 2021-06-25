@@ -9,13 +9,14 @@ Use this script to automatically characterize your crystals
 using a test fixture and a Nanovna.  The script will search for 
 the series resonant point of the crystal and from there
 make measurements.  It will also search for the parallel resonant point 
-of the crystal, if the --stray option is given.
+of the crystal should the --stray option be given.
 The parallel resonant frequency is used to find the crystal's "holder"
 capacitance Co.
 
 The script operates by drilling the Nanovna down to the series resonance point 
 of the crystal and measuring its Cm, Lm, and Rm values using the phase shift 
-method.  When the measurement is finished the Nanovna's 
+method.  To find the crystal's parallel resonant frequency it looks for the
+point of highest loss.   When the measurement is finished the Nanovna's 
 sweep frequency range will be restored to what it was before the script was run.
 
 ## How to use
