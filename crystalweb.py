@@ -79,9 +79,8 @@ def open_port(filename, start=None, stop=None):
     _dev = serial.Serial(filename)
     _start, _stop = sweep(start=start, stop=stop)
 
-def close_port():
+def restore_sweep():
     sweep(start=_start, stop=_stop)
-    _dev.close()
 
 
 #### CRYSTAL CHARACTERIZATION FUNCTIONS
@@ -256,6 +255,7 @@ def main():
     open_port(args.device or getport(), start=args.start, stop=args.stop)
     if args.batch:
         print('PART,FS,CM,LM,RM,QU,CO')
+
     while True:
         try:
             if args.fixture:
@@ -270,12 +270,13 @@ def main():
         except Exception:
             import traceback
             traceback.print_exc()
-        if not args.batch:
-            break
+        finally:
+            restore_sweep()
+
+        if not args.batch: break
         print("Press return to measure another part.", file=sys.stderr)
         sys.stdin.readline() 
         partnum += 1
-    close_port()
 
 if __name__ == "__main__":
     main()
