@@ -25,7 +25,7 @@ the series resonant point of the crystal and from there
 make measurements.  It will also search for the parallel resonant point 
 of the crystal, if the --stray option is given.
 The parallel resonant frequency is used to find the crystal's "holder"
-capacitance CO.
+capacitance Co.
 
 The script operates by drilling the Nanovna down to the series resonance point 
 of the crystal and measuring its Cm, Lm, and Rm values using the phase shift 
@@ -43,7 +43,7 @@ have been using a span of 100KHz.
 Next calibrate the thru port of the Nanovna using the "calib" menu.
 Now you can run the script to make the measurement.  Pass the --stray option 
 if you want to measure the holder capacitance.  To
-tell crystalweb explicitly what the start and stop frequency of span you
+tell crystalweb explicitly what the start and stop frequency of the span you
 want, pass the options --start and --stop to the program, otherwise it
 will query the range from the nanovna.
 
