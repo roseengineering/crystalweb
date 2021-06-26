@@ -93,7 +93,7 @@ def phase_shift_method(fs, bw, rm, rl):
     REFF = rm + 2 * rl
     CM = bw / (2 * np.pi * REFF * fs**2)
     LM = 1 / (2 * np.pi * fs)**2 / CM
-    QU = 2 * np.pi * fs * LM / REFF
+    QU = 2 * np.pi * fs * LM / rm
     return CM, LM, QU
 
 def holder_parallel(fs, fp, cm, stray):
